@@ -21,6 +21,19 @@ class LMS:
         fhand = open('list_of_books.txt','r')
         lines=fhand.readlines()
         for line in lines:
-         print(line)
-         self.books_dict.update()
-print(LMS("List_of_books.txt", "Library system"))
+         #print(line)
+         self.books_dict.update({str(id):{"Book_title":line.replace("\n"," "),
+         "lender_name":"","Issue_date":"","status":"Available"}})
+         id=id+1
+
+    def display_books(self):
+        print("-----------------------------List of Books-----------------------------------")
+        print("Books ID", "\t", "Title")
+        print("------------------------------------------------------------------------------")
+        #loop over book dic
+        for key,value in self.books_dict.items():
+            print(key,"\t\t",value.get("Book_title"),"-[",value.get("status"),"]")
+
+
+lib=(LMS("List_of_books.txt", "Library system"))
+print(lib.display_books())
