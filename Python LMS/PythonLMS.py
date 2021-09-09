@@ -34,6 +34,22 @@ class LMS:
         for key,value in self.books_dict.items():
             print(key,"\t\t",value.get("Book_title"),"-[",value.get("status"),"]")
 
-
+    def Issue_books(self):
+       books_id=input("Enter the book Id")
+       current_time=datetime.datetime.now().strftime("%Y-%m_%d %H:%M:%S")
+       if books_id in self.books_dict.keys():
+           if not self.books_dict[books_id]["status"] ==["Available"]:
+               print(f"This books is already issued to {self.books_dict[books_id]['lender_name']} \
+               on {self.books_dict[books_id]['Issue_date']}")
+           return self.books_dict()
+       elif self.books_dict[books_id]["status"] ==["Available"]:
+           your_name= input("Enter your name")
+           self.books_dict[books_id]['lender_name']=your_name
+           self.books_dict[books_id]['Issue_date']=current_time
+           self.books_dict[books_id]['status']='Already issued'
+           print(f"Books issued to {your_name}")
+       else:
+           print("BookId not found !!!!")
+           return self.books_dict()
 lib=(LMS("List_of_books.txt", "Library system"))
 print(lib.display_books())
